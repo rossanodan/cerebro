@@ -37,7 +37,7 @@ const typeDefs = gql`
     results: [Character]!
   }
   type Query {
-    getCharacters(limit: Int, name: String, nameStartsWith: String): GetCharactersResponse
+    getCharacters(limit: Int, name: String): GetCharactersResponse
   }
 `;
 

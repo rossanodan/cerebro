@@ -18,17 +18,11 @@ class Marvel extends RESTDataSource {
     request.params.set('hash', hash);
   }
 
-  async getCharacters({ limit = 20, name, nameStartsWith}: any) {
-    if (!name && !nameStartsWith) {
+  async getCharacters({ limit = 20, name }: any) {
+    if (!name) {
       return this.get(`/characters?limit=${limit}`);
     }
-    if (name && !nameStartsWith) {
-      return this.get(`/characters?limit=${limit}&name=${name}`);
-    }
-    if (!name && nameStartsWith) {
-      return this.get(`/characters?limit=${limit}&nameStartsWith=${nameStartsWith}`);
-    }
-    return this.get(`/characters?limit=${limit}&name=${name}&nameStartsWith=${nameStartsWith}`);
+    return this.get(`/characters?limit=${limit}&name=${name}`);
   }
 };
 
