@@ -29,15 +29,25 @@ const typeDefs = gql`
     detail: String
     fullSizeImage: String
   }
-  type GetCharactersResponse {
+  type Comic {
+    id: ID!
+    title: String!
+    description: String
+    pageCount: Int
+    image: Image
+  }
+  union Result = Character | Comic
+  type Response {
     offset: Int!
     limit: Int!
     total: Int!
     count: Int!
-    results: [Character]!
+    results: [Result]!
   }
   type Query {
-    getCharacters(limit: Int, name: String): GetCharactersResponse
+    getCharacters(limit: Int): Response!
+    getCharacterById(id: ID!): Response!
+    getComics(limit: Int): Response!
   }
 `;
 
