@@ -33,4 +33,4 @@ Open a web browser and visit http://localhost:4001/graphql.
 | ----------- | ----------- | ------ | ----------- |
 | `getCharacters`      | Returns a list of characters       | limit: number, name: string | `GetCharactersResponse` |
 
-* mandatory param
+`*` mandatory param
