@@ -48,6 +48,23 @@ const resolvers = {
         }))
       };
     },
+    getCreators: async (_: any, args: any, { dataSources }: any) => {
+      const response = await dataSources.Marvel.getCreators(args);
+      return {
+        offset: response.data.offset,
+        limit: response.data.limit,
+        total: response.data.total,
+        count: response.data.count,
+        results: response.data.results.map(({ id, firstName, lastName, fullName, thumbnail, comics }: any) => ({
+          id,
+          firstName,
+          lastName,
+          fullName,
+          thumbnail,
+          comics,
+        }))
+      };
+    },
   },
   Character: {
     id: ({ id }: any) => id,
@@ -62,6 +79,29 @@ const resolvers = {
     pageCount: ({ pageCount }: any) => pageCount,
     image: ({ thumbnail: { path, extension } }: any) => getImage(path, extension),
   },
+  Creator: {
+    id: ({ id }: any) => id,
+    firstName: ({ firstName }: any) => firstName,
+    lastName: ({ lastName }: any) => lastName,
+    fullName: ({ fullName }: any) => fullName,
+    image: ({ thumbnail: { path, extension } }: any) => getImage(path, extension),
+    comics: async ({ id }: any, args: any, { dataSources }: any): Promise<any> => {
+      const response = await dataSources.Marvel.getComicsByCreatorId(id, args);
+      return {
+        offset: response.data.offset,
+        limit: response.data.limit,
+        total: response.data.total,
+        count: response.data.count,
+        results: response.data.results.map(({ id, title, description, pageCount, thumbnail }: any) => ({
+          id,
+          title,
+          description,
+          pageCount,
+          thumbnail,
+        }))
+      };
+    },
+  },
   Result: {
     __resolveType(result: any) {
       if (result.name) {
@@ -70,6 +110,10 @@ const resolvers = {
 
       if (result.pageCount !== undefined) {
         return 'Comic';
+      }
+
+      if (result.firstName && result.lastName) {
+        return 'Creator';
       }
 
       return null;

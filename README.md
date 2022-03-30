@@ -47,6 +47,7 @@ TODO: document architecture
 | `getCharacterById` | Returns an array with one character or an empty array if no character is found | `*` id: number |
 | `getCharacterById` | Returns an array with one character or an empty array if no character is found | `*` id: number |
 | `getComics` | Returns an array of comics | limit: number (default 20) |
+| `getCreators` | Returns an array of creators | firstName: string, lastName: string |
 
 `*` mandatory param
 

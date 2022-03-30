@@ -36,7 +36,15 @@ const typeDefs = gql`
     pageCount: Int
     image: Image
   }
-  union Result = Character | Comic
+  type Creator {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    fullName: String
+    image: Image
+    comics(limit: Int): Response!
+  }
+  union Result = Character | Comic | Creator
   type Response {
     offset: Int!
     limit: Int!
@@ -48,6 +56,7 @@ const typeDefs = gql`
     getCharacters(limit: Int): Response!
     getCharacterById(id: ID!): Response!
     getComics(limit: Int): Response!
+    getCreators(firstName: String, lastName: String): Response!
   }
 `;
 

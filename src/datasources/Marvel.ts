@@ -29,6 +29,20 @@ class Marvel extends RESTDataSource {
   async getComics({ limit = 20 }: any) {
     return await this.get(`/comics?limit=${limit}`);
   }
+
+  async getCreators({ firstName, lastName }: any) {
+    if (firstName && lastName) {
+      return await this.get(`/creators?firstName=${firstName}&lastName=${lastName}`);
+    }
+    if (firstName && !lastName) {
+      return await this.get(`/creators?firstName=${firstName}`);
+    }
+    return await this.get(`/creators?lastName=${lastName}`);
+  }
+
+  async getComicsByCreatorId(id: number, { limit = 20 }: any) {
+    return await this.get(`/creators/${id}/comics?limit=${limit}`);
+  }
 };
 
 export default Marvel;
