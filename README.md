@@ -4,6 +4,7 @@
   - [How to run in local environment](#how-to-run-in-local-environment)
   - [Apollo Studio](#apollo-studio)
   - [Architecture](#architecture)
+    - [C1 Context](#c1-context)
   - [Queries](#queries)
     - [Response](#response)
 
@@ -41,6 +42,8 @@ Open a web browser and visit http://localhost:4001/graphql.
 Every time I start the server, the schema is automatically registered on [Apollo Studio](https://studio.apollographql.com/graph/cerebro). Publishing the schema unlocks useful festures such as **usage statistics** and the **schema changelog**.
 
 ## Architecture
+
+### C1 Context
 
 ![C1 - Context](./docs/images/Cerebro_C1Architecture.png)
 
