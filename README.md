@@ -42,7 +42,7 @@ Every time I start the server, the schema is automatically registered on [Apollo
 
 ## Architecture
 
-TODO: document architecture
+![C1 - Context](./docs/images/Cerebro_C1Architecture.png)
 
 ## Queries
 
