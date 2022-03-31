@@ -43,6 +43,6 @@ class Marvel extends RESTDataSource {
   async getComicsByCreatorId(id: number, { limit = 20 }: any) {
     return await this.get(`/creators/${id}/comics?limit=${limit}`);
   }
-};
+}
 
 export default Marvel;
