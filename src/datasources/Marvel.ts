@@ -2,6 +2,12 @@ import 'dotenv/config';
 import { RESTDataSource, RequestOptions } from 'apollo-datasource-rest';
 import md5 from 'md5';
 
+type Args = {
+  limit?: number;
+  firstName?: string;
+  lastName?: string;
+};
+
 class Marvel extends RESTDataSource {
   constructor() {
     super();
@@ -18,7 +24,7 @@ class Marvel extends RESTDataSource {
     request.params.set('hash', hash);
   }
 
-  async getCharacters({ limit = 20 }: any) {
+  async getCharacters({ limit = 20 }: Args) {
     return await this.get(`/characters?limit=${limit}`);
   }
 
@@ -26,13 +32,15 @@ class Marvel extends RESTDataSource {
     return await this.get(`/characters/${id}`);
   }
 
-  async getComics({ limit = 20 }: any) {
+  async getComics({ limit = 20 }: Args) {
     return await this.get(`/comics?limit=${limit}`);
   }
 
-  async getCreators({ firstName, lastName }: any) {
+  async getCreators({ firstName, lastName }: Args) {
     if (firstName && lastName) {
-      return await this.get(`/creators?firstName=${firstName}&lastName=${lastName}`);
+      return await this.get(
+        `/creators?firstName=${firstName}&lastName=${lastName}`
+      );
     }
     if (firstName && !lastName) {
       return await this.get(`/creators?firstName=${firstName}`);
@@ -40,7 +48,7 @@ class Marvel extends RESTDataSource {
     return await this.get(`/creators?lastName=${lastName}`);
   }
 
-  async getComicsByCreatorId(id: number, { limit = 20 }: any) {
+  async getComicsByCreatorId(id: number, { limit = 20 }: Args) {
     return await this.get(`/creators/${id}/comics?limit=${limit}`);
   }
 }

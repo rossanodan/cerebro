@@ -1,7 +1,7 @@
-import Marvel from "./Marvel";
+import Marvel from './Marvel';
 
 const dataSources = () => ({
-  Marvel: new Marvel(),
+  Marvel: new Marvel()
 });
 
 export default dataSources;

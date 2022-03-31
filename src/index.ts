@@ -15,25 +15,23 @@ const listen = async (port: number) => {
     typeDefs,
     resolvers,
     dataSources,
-    plugins: [
-      ApolloServerPluginDrainHttpServer({ httpServer }),
-    ],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
   });
   await server.start();
 
   server.applyMiddleware({ app });
 
   return new Promise((resolve, reject) => {
-    httpServer.listen(port).once('listening', resolve).once('error', reject)
+    httpServer.listen(port).once('listening', resolve).once('error', reject);
   });
 };
 
 const main = async () => {
   try {
-    await listen(4001)
-    console.log('🚀 Server is ready at http://localhost:4001/graphql')
+    await listen(4001);
+    console.log('🚀 Server is ready at http://localhost:4001/graphql');
   } catch (err) {
-    console.error('💀 Error starting the node server', err)
+    console.error('💀 Error starting the node server', err);
   }
 };
 

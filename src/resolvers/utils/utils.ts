@@ -1,4 +1,8 @@
-const getImage = (path: string, extension: string) => {
+export const getImage = (path: string, extension: string) => {
+  if (!path || !extension) {
+    return null;
+  }
+
   return {
     portraitSmall: `${path}/portrait_small.${extension}`,
     portraitMedium: `${path}/portrait_medium.${extension}`,
@@ -19,8 +23,6 @@ const getImage = (path: string, extension: string) => {
     landscapeAmazing: `${path}/landscape_amazing.${extension}`,
     landscapeIncredible: `${path}/landscape_incredible.${extension}`,
     detail: `${path}/detail.${extension}`,
-    fullSizeImage: `${path}.${extension}`,
+    fullSizeImage: `${path}.${extension}`
   };
 };
-
-export { getImage };
