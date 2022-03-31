@@ -2,6 +2,7 @@
 - [Table of Contents](#table-of-contents)
   - [How to install](#how-to-install)
   - [How to run in local environment](#how-to-run-in-local-environment)
+  - [Apollo Studio](#apollo-studio)
   - [Architecture](#architecture)
   - [Queries](#queries)
     - [Response](#response)
@@ -34,6 +35,10 @@ You will see something like this in the terminal
 ```
 
 Open a web browser and visit http://localhost:4001/graphql.
+
+## Apollo Studio
+
+Every time I start the server, the schema is automatically registered on [Apollo Studio](https://studio.apollographql.com/graph/cerebro). Publishing the schema unlocks useful festures such as **usage statistics** and the **schema changelog**.
 
 ## Architecture
 
